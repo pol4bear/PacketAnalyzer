@@ -52,7 +52,8 @@ typedef struct __TCP__
     u_short destPort;
     u_int sequenceNumber;
     u_int acknowledgeNumber;
-    u_short headerLengthAndFlags;
+    u_char headerLength;
+    u_char flags;
     u_short windowSize;
     u_short checksum;
     u_short urgentPointer;
@@ -63,8 +64,6 @@ typedef struct __PACKET__
     Ethernet *ethernet;
     IP *ip;
     TCP *tcp;
-    u_char tcpHeaderLength;
-    u_short tcpFlags;
     u_short payloadLength;
     const u_char *payload;
 } Packet;
