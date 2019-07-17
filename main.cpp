@@ -10,11 +10,12 @@ void usage() {
 
 int main(int argc, char* argv[]) {
   if (argc != 2) {
-    usage();
-    return -1;
+   usage();
+   return -1;
   }
 
   char* dev = argv[1];
+
   char errbuf[PCAP_ERRBUF_SIZE];
   pcap_t* handle = pcap_open_live(dev, BUFSIZ, 1, 1000, errbuf);
   if (handle == NULL) {
@@ -29,10 +30,11 @@ int main(int argc, char* argv[]) {
     if (res == 0) continue;
     if (res == -1 || res == -2) break;
 
-    printf("%u bytes captured\n", header->caplen);
+    //printf("%u bytes captured\n", header->caplen);
 
     Packet translatedPacket = transPacket(packet);
 
+    printPacketInfo(translatedPacket);
   }
 
   pcap_close(handle);
