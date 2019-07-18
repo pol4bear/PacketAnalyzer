@@ -9,13 +9,13 @@ void usage() {
 }
 
 int main(int argc, char* argv[]) {
-  if (argc != 2) {
-   usage();
-   return -1;
-  }
+//  if (argc != 2) {
+//   usage();
+//   return -1;
+//  }
 
-  char* dev = argv[1];
-  // char* dev = "ens33";
+//  char* dev = argv[1];
+  char* dev = "ens33";
 
   char errbuf[PCAP_ERRBUF_SIZE];
   pcap_t* handle = pcap_open_live(dev, BUFSIZ, 1, 1000, errbuf);

@@ -41,6 +41,7 @@ void printPacketInfo(Packet packet)
 
             if(packet.payloadLength > 0)
             {
+                printf("Payload length: %d\n", packet.payloadLength);
                 printf("Last 10 byte of payload: ");
                 for(int i = 0; i<10; i++)
                 {

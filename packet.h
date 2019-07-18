@@ -65,7 +65,7 @@ typedef struct __PACKET__
     Ethernet *ethernet;
     IP *ip;
     TCP *tcp;
-    u_short payloadLength;
+    int payloadLength;
     const u_char *payload;
 } Packet;
 
