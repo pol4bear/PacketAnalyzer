@@ -24,6 +24,7 @@ void printPacketInfo(Packet packet)
 {
     if(packet.ethernet != nullptr)
     {
+        printf("===============================\n");
         printf("Src MAC: %s\n", formatMac(packet.ethernet->destMac));
         printf("Dest MAC: %s\n", formatMac(packet.ethernet->srcMac));
 
@@ -38,7 +39,7 @@ void printPacketInfo(Packet packet)
                 printf("Dest Port: %d\n", ntohs(packet.tcp->destPort));
             }
 
-            if(packet.payload != nullptr)
+            if(packet.payloadLength > 0)
             {
                 printf("Last 10 byte of payload: ");
                 for(int i = 0; i<10; i++)
@@ -46,7 +47,7 @@ void printPacketInfo(Packet packet)
                     if(i == packet.payloadLength)
                         break;
 
-                    printf("%02X", packet.payload[i]);
+                    printf("%02X ", packet.payload[i]);
                 }
 
                 printf("\n");
@@ -72,9 +73,10 @@ Packet transPacket(const u_char *packetIn)
         {
             res.tcp = reinterpret_cast<TCP*>(const_cast<u_char*>(&packetIn[translatedBytes]));
 
-            translatedBytes += (res.tcp->headerLength & 0x0) >> 4 * 4;
+            translatedBytes += res.tcp->headerLength * 4;
 
-            res.payloadLength = htons(res.ip->totalLength) - res.ip->headerLength * 4 - res.tcp->headerLength * 4;            res.payload = &packetIn[translatedBytes];
+            res.payloadLength = htons(res.ip->totalLength) - res.ip->headerLength * 4 - res.tcp->headerLength * 4;
+            res.payload = &packetIn[translatedBytes];
         }
     }
 

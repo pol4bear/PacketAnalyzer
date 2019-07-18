@@ -52,7 +52,8 @@ typedef struct __TCP__
     u_short destPort;
     u_int sequenceNumber;
     u_int acknowledgeNumber;
-    u_char headerLength;
+    u_char reserved : 4;
+    u_char headerLength : 4;
     u_char flags;
     u_short windowSize;
     u_short checksum;
