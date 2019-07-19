@@ -6,9 +6,10 @@
 // Static header lengths
 #define SIZE_ETHERNET 14
 
+// Ethernet header ethertypes
 #define TYPE_IP 0x0800
 
-// IP protocol types
+// IP header protocol types
 #define PROTOCOL_TCP 0x6
 
 // TCP flags
