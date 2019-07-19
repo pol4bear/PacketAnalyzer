@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <memory>
 
+// Returns string of user readable MAC
 char* formatMac(u_char *mac)
 {
     char *ret = reinterpret_cast<char*>(malloc(17));
@@ -11,6 +12,7 @@ char* formatMac(u_char *mac)
     return ret;
 }
 
+// Returns string of user readable IP
 char* formatIP(u_char *ip)
 {
     char *res = reinterpret_cast<char*>(malloc(15));
@@ -20,6 +22,7 @@ char* formatIP(u_char *ip)
     return res;
 }
 
+// Prints certain packet info from TCP packet
 void printPacketInfo(Packet packet)
 {
     if(packet.ethernet != nullptr)
@@ -57,6 +60,7 @@ void printPacketInfo(Packet packet)
     }
 }
 
+// Set TCP packet parameters from raw packet
 Packet transPacket(const u_char *packetIn)
 {
     Packet res { nullptr, nullptr, nullptr, 0, nullptr };
