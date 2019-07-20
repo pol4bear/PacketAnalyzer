@@ -23,10 +23,6 @@
 #define TCP_FLAGS_SYN 0x2
 #define TCP_FLAGS_FIN 0x1
 
-// TCP option locations
-#define TCP_HEADERLEN 0xF000
-#define TCP_FLAGS 0xFFF
-
 // Ethernet header
 typedef struct __ETHERNET__
 {
